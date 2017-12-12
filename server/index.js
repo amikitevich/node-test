@@ -1,5 +1,5 @@
 const Koa = require('koa');
-const articlesRoutes = require('./routes/articles.routes');
+const articlesRoutes = require('./routes/todos.routes');
 const bodyParser = require('koa-bodyparser');
 
 const app = new Koa();

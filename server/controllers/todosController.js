@@ -4,9 +4,9 @@ const knex = require('knex')(config);
 
 const index = async ctx => {
   try {
-    const articles = await knex('articles').select();
+    const todos = await knex('todos').select();
     ctx.body = {
-      data: articles
+      data: todos
     };
   } catch (e) {
     console.error(e);
@@ -15,14 +15,14 @@ const index = async ctx => {
 
 const show = async ctx => {
   try {
-    const article = await knex('articles')
+    const todo = await knex('todos')
       .select()
       .where({ id: +ctx.params.id });
-    if (article.length === 0) {
+    if (todo.length === 0) {
       throw new Error('The requested resource does not exists');
     }
     ctx.body = {
-      data: article
+      data: todo
     };
   } catch (error) {
     ctx.body = {
@@ -35,14 +35,14 @@ const show = async ctx => {
 const create = async ctx => {
   try {
     const { body } = ctx.request;
-    const article = await knex('articles').insert(body);
-    if (article.length === 0) {
+    const todo = await knex('todos').insert(body);
+    if (todo.length === 0) {
       throw new Error('The resource already exists');
     }
     ctx.status = 201;
-    ctx.set('Location', `${ctx.request.URL}/${article[0]}`);
+    ctx.set('Location', `${ctx.request.URL}/${todo[0]}`);
     ctx.body = {
-      data: article
+      data: todo
     };
   } catch (e) {
     ctx.status = 409;

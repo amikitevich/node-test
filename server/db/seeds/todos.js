@@ -1,10 +1,10 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('articles')
+  return knex('todos')
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex('articles').insert([
+      return knex('todos').insert([
         {
           body: 'An Introduction to Building Test Driven RESTful APIs with Koa ...',
           title: 'An Introduction to Building Test Driven RESTful APIs with Koa',

@@ -2,7 +2,7 @@ const env = process.env.NODE_ENV || 'test';
 const config = require('../knexfile')[env];
 const server = require('../server/index');
 const knex = require('knex')(config);
-const PATH = '/api/v1/articles';
+const PATH = '/api/v1/todos';
 
 const chai = require('chai');
 const should = chai.should();
@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 
 // tests
 
-describe('routes: articles', () => {
+describe('routes: todos', () => {
   beforeEach(() => {
     return knex.migrate
       .rollback()
